@@ -1,0 +1,47 @@
+# This workflow installs the latest version of Terraform CLI and Terragrunt
+# On push events to the "main" or "dev" branch, `terraform apply` will be executed.
+#
+
+name: 'Terragrunt'
+
+on:
+  push:
+    branches:
+    - "main"
+    - "dev"
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  Terragrunt:
+    name: 'Terragrunt'
+    runs-on: ubuntu-latest
+    environment: production
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    # Install the latest version of Terraform CLI
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 1.2.6
+
+    # Install the latest version of Terragrunt CLI
+    - name: Setup Terragrunt
+      uses: autero1/action-terragrunt@v1.1.0
+      with:
+        terragrunt_version: 0.38.6
+
+    # Checks that all terragrunt version
+    - name: Interact with Terragrunt
+      run: terragrunt --version
