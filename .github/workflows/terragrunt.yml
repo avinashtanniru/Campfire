@@ -52,3 +52,6 @@ jobs:
 
     - name: Terragrunt validate
       run: terragrunt run-all validate
+
+    - name: Terragrunt Plan
+      run: terragrunt run-all plan
