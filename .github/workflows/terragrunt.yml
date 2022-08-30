@@ -51,4 +51,4 @@ jobs:
       run: terragrunt --version
 
     - name: Terragrunt validate
-      run: terragrunt run-all validate -auto-approve
+      run: terragrunt run-all validate

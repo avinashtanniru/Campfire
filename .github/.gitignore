@@ -1,4 +1,5 @@
 # Local .vagranrt directories
+*.vagrant/*
 **/.vagrant/*
 
 # Local .terraform directories
