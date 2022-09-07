@@ -60,16 +60,3 @@ variable "enable_dns_support" {
   description = "Enable DNS Support"
   default = true
 }
-
-variable "vpc_tags" {
-  type     = map
-  nullable = false
-  description = "VPC Tags"
-  default = {
-    Name        = "Terragrunt-VPC"
-    Owner       = "SRE"
-    Contact     = "SRE"
-    Project     = "campfire"
-    Environment = "Development"
-  }
-}

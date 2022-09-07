@@ -1,3 +1,15 @@
+locals {
+  # Common tags to be assigned to all resources
+  vpc_tags = {
+    Name        = "${var.vpc_name}"
+    Owner       = "SRE"
+    Contact     = "SRE"
+    Project     = "campfire"
+    Environment = "Development"
+  }
+}
+
+
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
   version = "3.14.4"
@@ -14,11 +26,5 @@ module "vpc" {
   enable_dns_hostnames = var.enable_dns_hostnames
   enable_dns_support   = var.enable_dns_support
 
-  tags = {
-    Name        = "Terragrunt-VPC"
-    Owner       = "SRE"
-    Contact     = "SRE"
-    Project     = "campfire"
-    Environment = "Development"
-  }
+  tags = local.vpc_tags
 }
